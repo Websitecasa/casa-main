@@ -12,7 +12,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="group relative flex flex-col rounded-2xl bg-surface border border-border hover:border-primary/50 hover:bg-surfaceHighlight transition-all duration-300 overflow-hidden h-full">
       {/* Image Container */}
-      <div className="aspect-[4/3] w-full overflow-hidden relative bg-[#0a0a0a]">
+      <div className="aspect-[4/3] w-full overflow-hidden relative bg-white/5 backdrop-blur-sm">
         <img
           src={product.image}
           alt={product.name}
@@ -22,7 +22,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             img.onerror = null;
             img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect fill="%23222222" width="100%" height="100%"/><text x="50%" y="50%" fill="%23bbbbbb" font-family="Arial" font-size="24" text-anchor="middle" dominant-baseline="middle">Image%20not%20available</text></svg>';
           }}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+          className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-out opacity-95 group-hover:opacity-100"
         />
         {/* Category Icon Badge */}
         <div className="absolute top-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-primary shadow-lg">

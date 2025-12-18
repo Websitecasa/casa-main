@@ -4,9 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    const base = env.VITE_BASE_PATH || '/casa-repose/';
     return {
-      base,
+      // 👇 THIS IS CRITICAL FOR GITHUB PAGES
+      base: "/casa-main/", 
+      
       server: {
         port: 3000,
         host: '0.0.0.0',

@@ -17,7 +17,8 @@ import { Category, Product, Project, HeroSlide } from './types';
 // Prefix static assets with the correct base so they work on GitHub Pages (sub-path hosting)
 export const assetPath = (relativePath: string) => {
   const normalized = relativePath.replace(/^\//, '');
-  return `${import.meta.env.BASE_URL}${normalized}`;
+  const full = `${import.meta.env.BASE_URL}${normalized}`;
+  return encodeURI(full);
 };
 
 const mediaPath = (path: string) => (path.startsWith('http') ? path : assetPath(path));
@@ -158,10 +159,29 @@ export const GALLERY_PROJECTS: Project[] = [
 
 const PRODUCTS_DATA_RAW: Product[] = [
     // Chairs Collection
-    { id: 'nc1', category: 'chairs', subCategory: 'Lounge Chairs', name: "Azure Velvet Tub Chair", description: "Contemporary blue velvet armchair with chrome legs", image: "/images/demo.png" },
+    { id: 'nc13', category: 'chairs', subCategory: 'Lounge Chairs', name: "Jojo Lounge Chair", description: "Soft upholstered lounge chair with sculpted profile", image: "/images/chairs/jojo.avif" },
     { id: 'nc2', category: 'chairs', subCategory: 'Lounge Chairs', name: "Sky Blue Box Armchair", description: "Structured light blue armchair with black piping", image: "/images/sky-blue-box-armchair.png" },
     { id: 'nc3', category: 'chairs', subCategory: 'Lounge Chairs', name: "Midnight Blue Lounge", description: "Deep blue velvet seat with wooden tapered legs", image: "/images/midnight-blue-lounge.png" },
-    { id: 'nc4', category: 'chairs', subCategory: 'Visitor Chairs', name: "Sunset Orange Accent", description: "Vibrant orange fabric chair for reception areas", image: "/images/sunset-orange-accent.jpg" },
+    { id: 'nc14', category: 'chairs', subCategory: 'Lounge Chairs', name: "Basket Lounge", description: "Curved lounge chair with basket weave detail", image: "/images/lounge-chairs/basket.jpg" },
+    { id: 'nc15', category: 'chairs', subCategory: 'Lounge Chairs', name: "Bold Lounge", description: "Bold silhouette with plush cushioning", image: "/images/lounge-chairs/bold-lounge.jpg" },
+    { id: 'nc16', category: 'chairs', subCategory: 'Lounge Chairs', name: "Bond", description: "Streamlined lounge seat with modern base", image: "/images/lounge-chairs/bond.jpg" },
+    { id: 'nc17', category: 'chairs', subCategory: 'Lounge Chairs', name: "Breeze", description: "Airy profile with soft upholstery", image: "/images/lounge-chairs/breeze.jpg" },
+    { id: 'nc18', category: 'chairs', subCategory: 'Lounge Chairs', name: "Cresent", description: "Crescent backrest with cozy seat", image: "/images/lounge-chairs/cresent.jpg" },
+    { id: 'nc19', category: 'chairs', subCategory: 'Lounge Chairs', name: "Creta", description: "Compact lounge with tailored seams", image: "/images/lounge-chairs/creta.jpg" },
+    { id: 'nc20', category: 'chairs', subCategory: 'Lounge Chairs', name: "Digit", description: "Minimal lounge chair with slim legs", image: "/images/lounge-chairs/digit.jpg" },
+    { id: 'nc21', category: 'chairs', subCategory: 'Lounge Chairs', name: "Download", description: "Relaxed lounge with wrapped arms", image: "/images/lounge-chairs/download.jpg" },
+    { id: 'nc22', category: 'chairs', subCategory: 'Lounge Chairs', name: "Elasticity", description: "Elastic sling-inspired comfort", image: "/images/lounge-chairs/elasticity.jpg" },
+    { id: 'nc23', category: 'chairs', subCategory: 'Lounge Chairs', name: "Hatt", description: "Low-profile lounge with wide arms", image: "/images/lounge-chairs/hatt.jpg" },
+    { id: 'nc24', category: 'chairs', subCategory: 'Lounge Chairs', name: "Knoll", description: "Classic-inspired lounge with crisp lines", image: "/images/lounge-chairs/knoll.jpg" },
+    { id: 'nc25', category: 'chairs', subCategory: 'Lounge Chairs', name: "Master", description: "Executive lounge with enveloping back", image: "/images/lounge-chairs/master.jpg" },
+    { id: 'nc26', category: 'chairs', subCategory: 'Lounge Chairs', name: "Modway", description: "Mid-century lounge with pedestal base", image: "/images/lounge-chairs/modway.jpg" },
+    { id: 'nc27', category: 'chairs', subCategory: 'Lounge Chairs', name: "Office Lounge", description: "Office-ready lounge with upright support", image: "/images/lounge-chairs/office.jpg" },
+    { id: 'nc28', category: 'chairs', subCategory: 'Lounge Chairs', name: "Sonet", description: "Rounded lounge with pillowy seat", image: "/images/lounge-chairs/sonet.jpg" },
+    { id: 'nc29', category: 'chairs', subCategory: 'Lounge Chairs', name: "Studio", description: "Studio lounge chair with slim profile", image: "/images/lounge-chairs/studio.jpg" },
+    { id: 'nc30', category: 'chairs', subCategory: 'Lounge Chairs', name: "Track", description: "Track-arm lounge with tailored finish", image: "/images/lounge-chairs/track.jpg" },
+    { id: 'nc31', category: 'chairs', subCategory: 'Lounge Chairs', name: "Trend", description: "Contemporary lounge with sculpted seat", image: "/images/lounge-chairs/trend.jpg" },
+    { id: 'nc32', category: 'chairs', subCategory: 'Lounge Chairs', name: "Trion", description: "Tri-leg lounge with soft shell", image: "/images/lounge-chairs/trion.jpg" },
+    { id: 'nc33', category: 'chairs', subCategory: 'Lounge Chairs', name: "Weave", description: "Woven-back lounge chair with cushion", image: "/images/lounge-chairs/weave.jpg" },
     { id: 'nc5', category: 'chairs', subCategory: 'Lounge Chairs', name: "Navy Curved Back", description: "Elegant navy blue armchair with curved silhouette", image: "/images/navy-curved-back.jpg" },
     { id: 'nc6', category: 'chairs', subCategory: 'Lounge Chairs', name: "Blush Pink Tub Chair", description: "Soft pink upholstery with comfortable deep seating", image: "/images/blush-pink-tub-chair.jpg" },
     { id: 'nc7', category: 'chairs', subCategory: 'High Back', name: "Scarlet Wingback", description: "Classic high-back wing chair in bold red velvet", image: "/images/scarlet-wingback.jpg" },
@@ -172,42 +192,86 @@ const PRODUCTS_DATA_RAW: Product[] = [
     { id: 'nc12', category: 'chairs', subCategory: 'Lounge Chairs', name: "Royal Purple Lounge", description: "Plush purple seating for breakout zones", image: "/images/12.png" },
 
     // Tables
-    { id: 't1', category: 'tables', subCategory: 'Executive Desks', name: "Executive Desk", description: "Large wooden desk with cable management", image: "https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=400&h=300&fit=crop" },
-    { id: 't2', category: 'tables', subCategory: 'Workstations', name: "Height Adjustable Table", description: "Adjustable height electric desk", image: "/images/height-adjustable-table.png" },
-    { id: 't3', category: 'tables', subCategory: 'Conference Tables', name: "Conference Table", description: "8-10 seater with power outlets", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" },
-    { id: 't4', category: 'tables', subCategory: 'Workstations', name: "Height Adjustable Table", description: "djustable height electric desk", image: "/images/height-adjustable-table-2.png" },
+    { id: 't1', category: 'tables', subCategory: 'Conference Tables', name: "Rectangular Metal Frame Table", description: "Rectangular meeting table with metal frame base", image: "/Tables/rectangular-metal-frame-table.jpg" },
+    { id: 't2', category: 'tables', subCategory: 'Coffee Tables', name: "Round Coffee Table", description: "Round coffee table with sleek base", image: "/Tables/round-coffee-table.jpg" },
+    { id: 't3', category: 'tables', subCategory: 'Dining Tables', name: "Round White Table", description: "Minimal round white tabletop on pedestal base", image: "/Tables/round-white-table.jpg" },
+    { id: 't4', category: 'tables', subCategory: 'Side Tables', name: "Side Table", description: "Compact side table for lounge setups", image: "/Tables/side-table.jpg" },
+    { id: 't5', category: 'tables', subCategory: 'Utility Tables', name: "Trolley Table", description: "Mobile trolley table with storage tiers", image: "/Tables/trolley.jpg" },
+    { id: 't6', category: 'tables', subCategory: 'Meeting Tables', name: "Zoom Table", description: "Contemporary meeting table with tapered legs", image: "/Tables/zoom.jpg" },
     
-    // Lounge
-    { id: 'l1', category: 'lounge', subCategory: 'Sofas', name: "Reception Sofa Set", description: "3-seater with matching chairs", image: "/images/13.png" },
-    { id: 'l2', category: 'lounge', subCategory: 'Modular Seating', name: "Modular Lounge Seating", description: "Configurable pieces", image: "/images/14.png" },
-    { id: 'l3', category: 'lounge', subCategory: 'Accent Chairs', name: "Accent Chair", description: "Designer statement piece", image: "/images/15.png" },
+    // Lounge (Sofas)
+    { id: 'l1', category: 'lounge', subCategory: 'Sofas', name: "3 Seater Sofa", description: "Comfortable 3-seater sofa with plush cushions", image: "/Sofa/3-seater-sofa.jpg" },
+    { id: 'l2', category: 'lounge', subCategory: 'Sofas', name: "Baron Sofa", description: "Elegant sofa with tailored arms", image: "/Sofa/baron.jpg" },
+    { id: 'l3', category: 'lounge', subCategory: 'Sofas', name: "Bond Sofa", description: "Modern sofa with clean lines", image: "/Sofa/bond.jpg" },
+    { id: 'l4', category: 'lounge', subCategory: 'Sofas', name: "Century Sofa", description: "Timeless design with deep seating", image: "/Sofa/century.jpg" },
+    { id: 'l5', category: 'lounge', subCategory: 'Sofas', name: "Fiji Sofa", description: "Relaxed silhouette for casual lounges", image: "/Sofa/fiji.jpg" },
+    { id: 'l6', category: 'lounge', subCategory: 'Sofas', name: "Ines Sofa", description: "Curved profile with cozy upholstery", image: "/Sofa/ines.jpg" },
+    { id: 'l7', category: 'lounge', subCategory: 'Sofas', name: "Lean Sofa", description: "Sleek sofa with angled back", image: "/Sofa/lean.jpg" },
+    { id: 'l8', category: 'lounge', subCategory: 'Sofas', name: "Outline Corner Sofa", description: "Spacious corner sofa for collaborative spaces", image: "/Sofa/outline-corner-sofa.jpg" },
+    { id: 'l9', category: 'lounge', subCategory: 'Sofas', name: "Maria Sofa", description: "Soft, inviting sofa with rounded edges", image: "/Sofa/maria.jpg" },
+    { id: 'l10', category: 'lounge', subCategory: 'Sofas', name: "Save Sofa", description: "Compact sofa for tight layouts", image: "/Sofa/save.jpg" },
+    { id: 'l11', category: 'lounge', subCategory: 'Sofas', name: "Velours Sofa", description: "Velour-upholstered sofa with luxe feel", image: "/Sofa/velours.jpg" },
 
     // New categories: Phone Booths (office pods) and Wooden Cafe Chairs
 
     // Cafe Chairs - Wooden variety
-    { id: 'cc2', category: 'cafe_chairs', subCategory: 'Wooden Chairs', name: "Solid Oak Wooden Chair", description: "High-quality solid oak chair suitable for cafes and bistros (4k image recommended)", image: "/images/17.png" },
+    { id: 'cc79', category: 'cafe_chairs', subCategory: 'Bistro Chairs', name: "The Parisian Bistro", description: "Modern bistro chair with elegant design", image: "/images/cafe-chairs/cafe-chair-79.png" },
+    { id: 'cc80', category: 'cafe_chairs', subCategory: 'Bistro Chairs', name: "Dusk Pink Velvet Chair", description: "Contemporary cafe seating with sturdy frame", image: "/images/cafe-chairs/cafe-chair-80.png" },
 
     // Puffy
-    { id: 'pu1', category: 'puffy', subCategory: 'Bean Bags', name: "Bean Bag XXL", description: "Premium leather bean bag", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" },
-    { id: 'pu2', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Ottoman Pouf", description: "Round cushioned seating", image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=400&h=300&fit=crop" },
+    { id: 'pu1', category: 'puffy', subCategory: 'Bean Bags', name: "Aop Bean Bag", description: "Cozy bean bag for casual lounges", image: "/Puffy/aop.jpg" },
+    { id: 'pu2', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Canada Ottoman", description: "Structured ottoman with soft upholstery", image: "/Puffy/canada.jpg" },
+    { id: 'pu3', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Lean Pouf", description: "Low-profile pouf with rounded edges", image: "/Puffy/lean.jpg" },
+    { id: 'pu4', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Ottoman Burke", description: "Plush ottoman with stitched detailing", image: "/Puffy/ottoman-burke.jpg" },
+    { id: 'pu5', category: 'puffy', subCategory: 'Bean Bags', name: "Puffy Seat", description: "Relaxed puffy seating for breakouts", image: "/Puffy/puffy.jpg" },
+    { id: 'pu6', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Seoul Pouf", description: "Compact pouf with soft finish", image: "/Puffy/seoul.jpg" },
+    { id: 'pu7', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Soho Pouf", description: "Modern pouf with clean lines", image: "/Puffy/soho.jpg" },
+    { id: 'pu8', category: 'puffy', subCategory: 'Ottomans & Poufs', name: "Tablet Pouf", description: "Versatile pouf for casual seating", image: "/Puffy/tablet.jpg" },
 
     // Pods
-    { id: 'po1', category: 'pods', subCategory: 'Work Pods', name: "Solo Work Pod", description: "Single-person acoustic booth", image: "/images/18.png" },
-    { id: 'po2', category: 'pods', subCategory: 'Meeting Pods', name: "Meeting Pod", description: "4-person soundproof pod", image: "/images/18.png" },
-    { id: 'po3', category: 'pods', subCategory: 'Phone Booths', name: "Private Phone Booth", description: "Acoustic single-person phone booth for focused calls", image: "/images/17.png" },
+    { id: 'po1', category: 'pods', subCategory: 'Work Pods', name: "Mute Pod", description: "Single-person acoustic work pod", image: "/Pods/mute.jpg" },
+    { id: 'po2', category: 'pods', subCategory: 'Meeting Pods', name: "Outerline Highback Pod", description: "High-back meeting pod for teams", image: "/Pods/outerline-highback.jpg" },
+    { id: 'po3', category: 'pods', subCategory: 'Phone Booths', name: "Stop Pod", description: "Private phone booth for focused calls", image: "/Pods/stop.jpg" },
+    { id: 'po4', category: 'pods', subCategory: 'Phone Booths', name: "1 Seater Phone 1", description: "Single-seat phone booth for private calls", image: "/Phone Booth/1-seater-phone-1.jpg" },
+    { id: 'po5', category: 'pods', subCategory: 'Phone Booths', name: "1 Seater Phone 2", description: "Compact phone booth with modern design", image: "/Phone Booth/1-seater-phone-2.jpg" },
+    { id: 'po6', category: 'pods', subCategory: 'Phone Booths', name: "1 Seater Phone 2A", description: "Single-person phone pod variant", image: "/Phone Booth/1-seater-phone-2a.jpg" },
+    { id: 'po7', category: 'pods', subCategory: 'Phone Booths', name: "1 Seater Phone 3", description: "Acoustic single-seat phone booth", image: "/Phone Booth/1-seater-phone-3.jpg" },
+    { id: 'po8', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod", description: "2-person collaborative pod", image: "/Phone Booth/2-seater-pod.jpg" },
+    { id: 'po9', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod 1", description: "Compact 2-seat meeting pod", image: "/Phone Booth/2-seater-pod-1.jpg" },
+    { id: 'po10', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod 2", description: "Duo meeting pod with soundproofing", image: "/Phone Booth/2-seater-pod-2.jpg" },
+    { id: 'po11', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod 3", description: "2-person pod for focused meetings", image: "/Phone Booth/2-seater-pod-3.jpg" },
+    { id: 'po12', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod 4", description: "Private 2-seat collaboration pod", image: "/Phone Booth/2-seater-pod-4.jpg" },
+    { id: 'po13', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod 5", description: "Modern 2-seat pod with ventilation", image: "/Phone Booth/2-seater-pod-5.jpg" },
+    { id: 'po14', category: 'pods', subCategory: 'Meeting Pods', name: "2 Seater Pod 6", description: "Enclosed 2-person meeting space", image: "/Phone Booth/2-seater-pod-6.jpg" },
+    { id: 'po15', category: 'pods', subCategory: 'Meeting Pods', name: "4 Seater Pod 1", description: "4-person team meeting pod", image: "/Phone Booth/4-seater-pod-1.jpg" },
+    { id: 'po16', category: 'pods', subCategory: 'Meeting Pods', name: "4 Seater Pod 2", description: "Spacious 4-seat collaborative pod", image: "/Phone Booth/4-seater-pod-2.jpg" },
+    { id: 'po17', category: 'pods', subCategory: 'Meeting Pods', name: "4 Seater Pod 3", description: "Acoustic 4-seat meeting pod", image: "/Phone Booth/4-seater-pod-3.jpg" },
+    { id: 'po18', category: 'pods', subCategory: 'Meeting Pods', name: "4 Seater Pod 4", description: "Private 4-person meeting pod", image: "/Phone Booth/4-seater-pod-4.jpg" },
+    { id: 'po19', category: 'pods', subCategory: 'Meeting Pods', name: "4 Seater Pod 5", description: "Enclosed 4-seat workspace pod", image: "/Phone Booth/4-seater-pod-5.jpg" },
+    { id: 'po20', category: 'pods', subCategory: 'Meeting Pods', name: "6 Seater Pod 1", description: "Large 6-person meeting pod", image: "/Phone Booth/6-seater-pod-1.jpg" },
+    { id: 'po21', category: 'pods', subCategory: 'Meeting Pods', name: "6 Seater Pod 2", description: "Team room pod for 6 people", image: "/Phone Booth/6-seater-pod-2.jpg" },
+    { id: 'po22', category: 'pods', subCategory: 'Meeting Pods', name: "6 Seater Pod 3", description: "Spacious 6-seat collaborative pod", image: "/Phone Booth/6-seater-pod-3.jpg" },
+    { id: 'po23', category: 'pods', subCategory: 'Meeting Pods', name: "6 Seater Pod 4", description: "Executive 6-person meeting pod", image: "/Phone Booth/6-seater-pod-4.jpg" },
+    { id: 'po24', category: 'pods', subCategory: 'Meeting Pods', name: "6 Seater Pod 5", description: "Large team meeting space pod", image: "/Phone Booth/6-seater-pod-5.jpg" },
+    { id: 'po25', category: 'pods', subCategory: 'Meeting Pods', name: "6 Seater Pod 6", description: "Premium 6-seat enclosed pod", image: "/Phone Booth/6-seater-pod-6.jpg" },
+    { id: 'po26', category: 'pods', subCategory: 'Phone Booths', name: "Phone Pods", description: "Multi-purpose phone booth pod", image: "/Phone Booth/phone-pods.jpg" },
+    { id: 'po27', category: 'pods', subCategory: 'Work Pods', name: "General Pod", description: "Versatile work and meeting pod", image: "/Phone Booth/pod.png" },
 
     // Bar Stools
-    { id: 'bs1', category: 'bar_stools', subCategory: 'Metal Stools', name: "Industrial Metal Stool", description: "Adjustable height with backrest", image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=400&h=300&fit=crop" },
-    { id: 'bs2', category: 'bar_stools', subCategory: 'Wooden Stools', name: "Wooden Bar Stool", description: "Classic design with footrest", image: "https://images.unsplash.com/photo-1551298370-9d3d53740c72?w=400&h=300&fit=crop" },
+    { id: 'bs1', category: 'bar_stools', subCategory: 'Metal Stools', name: "Industrial Metal Stool", description: "Adjustable height with backrest", image: "/images/bar-stools/bar-stool-2.jpg" },
+    { id: 'bs2', category: 'bar_stools', subCategory: 'Designer Stools', name: "BoConcept P", description: "Sleek designer profile with sculpted seat", image: "/images/bar-stools/boconcept-p.jpg" },
+    { id: 'bs3', category: 'bar_stools', subCategory: 'Upholstered Stools', name: "Combo Bar Stool", description: "Upholstered comfort with footrest support", image: "/images/bar-stools/combo.jpg" },
+    { id: 'bs4', category: 'bar_stools', subCategory: 'Modern Stools', name: "Mambo Stool", description: "Modern silhouette with slim frame", image: "/images/bar-stools/mambo.jpg" },
     
     // Bar Tables
-    { id: 'bt1', category: 'bar_tables', subCategory: 'High Tables', name: "High Top Table", description: "42\" height with metal base", image: "https://images.unsplash.com/photo-1530018607912-eff2daa1b562?w=400&h=300&fit=crop" },
+    { id: 'bt75', category: 'bar_tables', subCategory: 'High Tables', name: "The Luna Marble Bar", description: "A luxurious high table featuring a polished white stone top and a sleek cylindrical black base", image: "/images/bar-tables/bar-table-75.png" },
+    { id: 'bt76', category: 'bar_tables', subCategory: 'High Tables', name: " The Bronx Industrial", description: "Contemporary industrial bar table combining a textured oak surface with a sturdy raw steel frame.", image: "/images/bar-tables/bar-table-76.png" },
+    { id: 'bt77', category: 'bar_tables', subCategory: 'High Tables', name: " The Oslo Nordic Bar", description: " A minimalist Scandi-style high table crafted from smooth light ash wood with elegant tapered legs.", image: "/images/bar-tables/bar-table-77.png" },
     
     // Cafe Chairs
-    { id: 'cc1', category: 'cafe_chairs', subCategory: 'Bistro Chairs', name: "Bistro Chair", description: "Classic French cafe style", image: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=300&fit=crop" },
     
     // Cafe Tables
-    { id: 'ct1', category: 'cafe_tables', subCategory: 'Dining Tables', name: "Marble Bistro Table", description: "Elegant round marble top", image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=300&fit=crop" },
+    { id: 'ct2', category: 'cafe_tables', subCategory: 'Dining Tables', name: "Square Oak Cafe Table", description: "Solid wood square cafe table with rounded edges", image: "/images/cafe-tables/cafe-table-82.png" },
 ];
 
 export const PRODUCTS_DATA: Product[] = PRODUCTS_DATA_RAW.map(product => ({

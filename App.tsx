@@ -10,9 +10,9 @@ import { Category } from './types';
 import emailjs from '@emailjs/browser';
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
 
-const EMAILJS_SERVICE_ID = 'service_6aukyfa';
-const EMAILJS_TEMPLATE_ID = 'template_t9az9ae';
-const EMAILJS_PUBLIC_KEY = '0VeDXaKsxd8LUXWtE';
+const EMAILJS_SERVICE_ID = 'service_oy3ew53';
+const EMAILJS_TEMPLATE_ID = 'template_vq3welv';
+const EMAILJS_PUBLIC_KEY = 'cTdQsSabgpwLAOJGK';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState<'home' | 'collection' | 'gallery' | 'about' | 'downloads' | 'privacy'>('home');
@@ -145,7 +145,7 @@ const App = () => {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveSection('home')}>
             <div className="rounded-lg p-1 bg-gradient-to-tr from-amber-700/10 to-transparent border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.6)]">
               <img
-                src={assetPath('logo/logo.png')}
+                src={assetPath('logo/final logo.png')}
                 alt="Casa Repose"
                 className="w-12 h-12 object-contain rounded-md block"
               />
@@ -483,7 +483,7 @@ const App = () => {
                         <span>PDF Format</span>
                         <span>12.4 MB</span>
                      </div>
-                    <a href={assetPath('Casa-Repose-Soft-Seating-Profile.pdf')} download className="w-full inline-flex items-center justify-center gap-2 py-4 bg-white text-black font-semibold rounded-xl hover:bg-primary hover:text-black transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+                    <a href={assetPath('profile casa repose.pdf')} download className="w-full inline-flex items-center justify-center gap-2 py-4 bg-white text-black font-semibold rounded-xl hover:bg-primary hover:text-black transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]">
                       <Download className="w-4 h-4" />
                       Download Profile
                     </a>
@@ -527,7 +527,7 @@ const App = () => {
 
               <div>
                 <h3 className="text-xl text-white font-semibold">Data Security</h3>
-                <p>We take reasonable measures to protect your data. If you have concerns, contact us at <span className="text-white">info.casarepose@gmail.com</span>.</p>
+                <p>We take reasonable measures to protect your data. If you have concerns, contact us at <span className="text-white">sales@casarepose.com</span>.</p>
               </div>
 
               <div>
@@ -537,7 +537,7 @@ const App = () => {
 
               <div>
                 <h3 className="text-xl text-white font-semibold">Your Rights</h3>
-                <p>You may request access to or deletion of your personal data by contacting us at <span className="text-white">praveenjb24@gmail.com</span>.</p>
+                <p>You may request access to or deletion of your personal data by contacting us at <span className="text-white">info@casarepose.com</span>.</p>
               </div>
             </div>
           </motion.div>
@@ -591,7 +591,7 @@ const App = () => {
                      whileHover={{ scale: 1.03 }}
                      className="absolute inset-4 z-20 rounded-xl p-2 bg-white/5 border border-white/10 shadow-2xl flex items-center justify-center"
                    >
-                     <img src={assetPath('logo/log.png')} alt="About" className="w-full h-full object-contain rounded-md" />
+                     <img src={assetPath('logo/final logo.png')} alt="About" className="w-full h-full object-contain rounded-md" />
                    </motion.div>
                 </div>
             </div>
@@ -656,7 +656,11 @@ const App = () => {
                           </div>
                           <div>
                              <h4 className="text-white font-medium">Phone</h4>
-                             <p className="text-textMuted text-sm mt-1">+91 9886877178</p>
+                             <p className="text-textMuted text-sm mt-1"></p>
+                             <div className="flex flex-col gap-1">
+                               <span>+91 9886877178</span>
+                               <span>+91 9632406013</span>
+                             </div>
                           </div>
                        </div>
 
@@ -762,7 +766,7 @@ const App = () => {
               <div className="flex items-center gap-3">
               <div className="rounded-lg p-1 bg-gradient-to-tr from-amber-700/10 to-transparent border border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.6)]">
                 <img
-                  src={assetPath('logo/logo.png')}
+                  src={assetPath('logo/final logo.png')}
                   alt="Casa Repose"
                   className="w-10 h-10 object-contain opacity-90 rounded-sm block"
                 />
@@ -803,17 +807,27 @@ const App = () => {
             <h3 className="text-primary font-serif text-lg mb-6">Contact Us</h3>
             <div className="space-y-6 text-sm text-textMuted">
               <div className="space-y-1">
-                <p className="font-medium text-white">Casa Repose<span className="ml-1 align-super text-xs">®</span> Furniture Pvt. Ltd.</p>
+                <p className="font-medium text-white">Casa Repose<span className="ml-1 align-super text-xs">®</span></p>
                 <p>#8, 5th Cross, Muninagappa Layout,</p>
                 <p>Kaval Bayasandara, RT Nagar,</p>
                 <p>Bangalore – 560032</p>
               </div>
               
               <div className="space-y-2">
-                <p>Phone: <span className="text-white">+91 9886877178</span></p>
-                <p>       <span className="text-white">+91 9632406013</span></p>
-                <p>Email: <span className="text-white">info@casarepose.com</span></p>
-                <p>       <span className="text-white">sales@casarepose.com</span></p>
+                <div>
+                  <p className="mb-1">Phone:</p>
+                  <div className="flex flex-col gap-1 pl-4">
+                    <span className="text-white">+91 9886877178</span>
+                    <span className="text-white">+91 9632406013</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-1">Email:</p>
+                  <div className="flex flex-col gap-1 pl-4">
+                    <span className="text-white">info@casarepose.com</span>
+                    <span className="text-white">sales@casarepose.com</span>
+                  </div>
+                </div>
               </div>
 
               {/* Social Icons */}
@@ -845,9 +859,9 @@ const App = () => {
         </div>
       </footer>
       <FloatingWhatsApp
-        phoneNumber="917204059084"
+        phoneNumber="919886877178"
         accountName="Casa Repose"
-        avatar={assetPath('logo/logo.png')}
+        avatar={assetPath('logo/final logo.png')}
         statusMessage="online"
         chatMessage="Hello! Welcome to Casa Repose. How can we help you with your furniture requirements?"
         placeholder="Type a message..."
