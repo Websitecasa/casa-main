@@ -15,7 +15,7 @@ const EMAILJS_TEMPLATE_ID = 'template_vq3welv';
 const EMAILJS_PUBLIC_KEY = 'cTdQsSabgpwLAOJGK';
 
 const App = () => {
-  const [activeSection, setActiveSection] = useState<'home' | 'collection' | 'gallery' | 'about' | 'downloads' | 'privacy'>('home');
+  const [activeSection, setActiveSection] = useState<'home' | 'collection' | 'gallery' | 'about' | 'downloads' | 'privacy' | 'terms'>('home');
   const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all');
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>('all');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -145,7 +145,7 @@ const App = () => {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveSection('home')}>
             <div className="rounded-lg p-1 bg-gradient-to-tr from-amber-700/10 to-transparent border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.6)]">
               <img
-                src={assetPath('logo/final logo.png')}
+                src={assetPath('logo/logo.png')}
                 alt="Casa Repose"
                 className="w-12 h-12 object-contain rounded-md block"
               />
@@ -527,7 +527,7 @@ const App = () => {
 
               <div>
                 <h3 className="text-xl text-white font-semibold">Data Security</h3>
-                <p>We take reasonable measures to protect your data. If you have concerns, contact us at <span className="text-white">sales@casarepose.com</span>.</p>
+                <p>We take reasonable measures to protect your data. If you have concerns, contact us at <span className="text-white"></span>.</p>
               </div>
 
               <div>
@@ -537,7 +537,75 @@ const App = () => {
 
               <div>
                 <h3 className="text-xl text-white font-semibold">Your Rights</h3>
-                <p>You may request access to or deletion of your personal data by contacting us at <span className="text-white">info@casarepose.com</span>.</p>
+                <p>You may request access to or deletion of your personal data by contacting us at <span className="text-white"></span>.</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Terms & Conditions Section */}
+        {activeSection === 'terms' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-4xl mx-auto w-full space-y-8 py-16"
+          >
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl font-medium">Terms & Conditions</h2>
+              <p className="text-textMuted max-w-2xl mx-auto">
+                These Terms govern your access to and use of the CASA REPOSE website. By using the Website, you agree to be bound by these Terms.
+              </p>
+            </div>
+
+            <div className="space-y-6 text-textMuted">
+              <div>
+                <h3 className="text-xl text-white font-semibold">1. Introduction</h3>
+                <p>Welcome to the website of CASA REPOSE (“Company”, “we”, “our”, “us”). These Terms & Conditions (“Terms”) govern your access to and use of our website and any content or features made available through it (collectively, the “Website”). By accessing or using the Website, you agree to be bound by these Terms. If you do not agree with these Terms, you must not use the Website.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">2. Nature of the Website (No Online Sales)</h3>
+                <p>The CASA REPOSE Website is intended only for browsing our furniture collection and submitting enquiries. We do not sell products or collect payments online through the Website. Any purchase, booking, quotation, or order for our products or services is handled offline (for example, in person, by phone, email, or messaging) under separate commercial terms shared directly with you. Information on the Website, including product descriptions, images, and prices (if any shown), is for general guidance only and does not constitute a binding offer or contract.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">3. Use of the Website</h3>
+                <p>You agree to use the Website only for lawful purposes and in accordance with these Terms. You must not: (i) use the Website in any way that violates applicable laws or regulations; (ii) attempt to gain unauthorized access to, interfere with, damage, or disrupt any part of the Website, our servers, or any connected systems; (iii) use any automated tools (bots, scrapers, data‑mining tools) to access or copy Website content without our prior written consent. We may suspend or terminate your access to the Website if we believe you have violated these Terms.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">4. Enquiries and Communication</h3>
+                <p>The Website may allow you to submit enquiry forms or contact us using the contact details provided. Submitting an enquiry does not create a purchase order, booking, or any binding obligation on CASA REPOSE to supply products. Prices, availability, specifications, delivery timelines, and other commercial terms will be confirmed separately by us, if and when you decide to proceed offline. By sharing your contact details, you consent to us contacting you via phone, email, messaging apps, or other electronic means regarding your enquiry and related services.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">5. Jurisdictional Issues / India Only</h3>
+                <p>Unless specifically stated otherwise, the Website content and any offline services or products described are intended primarily for customers located in India. Users who access the Website from other countries do so on their own initiative and are responsible for compliance with local laws, if applicable.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">6. Intellectual Property</h3>
+                <p>All content on the Website, including but not limited to the CASA REPOSE name and logo, product designs, photographs, text, graphics, and layout, is owned by or licensed to CASA REPOSE and is protected by copyright, trademark, and other intellectual property laws. You may not copy, reproduce, modify, publish, distribute, or create derivative works from any part of the Website without our prior written consent.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">7. User Content (Reviews, Comments, etc.)</h3>
+                <p>If the Website allows you to submit any content (such as reviews, comments, or images), you are solely responsible for that content. By submitting such content, you confirm that you have the right to do so and that the content does not infringe any third‑party rights or contain unlawful material. You grant CASA REPOSE a non‑exclusive, worldwide, royalty‑free license to use, reproduce, display, and distribute that content in connection with the Website and our marketing. We may remove any content we consider inappropriate or in violation of these Terms.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">8. Third‑Party Links</h3>
+                <p>The Website may contain links to third‑party websites or services that are not owned or controlled by CASA REPOSE. We are not responsible for the content, privacy policies, or practices of any third‑party sites. Accessing such links is at your own risk, and you should review the terms and policies of any third‑party websites you visit.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">9. Disclaimer of Warranties</h3>
+                <p>The Website and its content are provided on an “as is” and “as available” basis, without any warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non‑infringement, to the maximum extent permitted by law. We do not warrant that the Website will be uninterrupted, secure, or error‑free, or that any defects will be corrected. Any reliance you place on information on the Website is strictly at your own risk.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-white font-semibold">10. Limitation of Liability</h3>
+                <p>To the fullest extent permitted by law, CASA REPOSE and its directors, employees, and affiliates shall not be liable for any indirect, incidental, consequential, special, or punitive damages, or for any loss of profits, revenue, data, or goodwill, arising out of or in connection with your use of the Website or reliance on its content.</p>
               </div>
             </div>
           </motion.div>
@@ -591,7 +659,7 @@ const App = () => {
                      whileHover={{ scale: 1.03 }}
                      className="absolute inset-4 z-20 rounded-xl p-2 bg-white/5 border border-white/10 shadow-2xl flex items-center justify-center"
                    >
-                     <img src={assetPath('logo/final logo.png')} alt="About" className="w-full h-full object-contain rounded-md" />
+                     <img src={assetPath('logo/logo.png')} alt="About" className="w-full h-full object-contain rounded-md" />
                    </motion.div>
                 </div>
             </div>
@@ -670,7 +738,7 @@ const App = () => {
                           </div>
                           <div>
                              <h4 className="text-white font-medium">Email</h4>
-                             <p className="text-textMuted text-sm mt-1">info.casarepose@gmail.com</p>
+                             <p className="text-textMuted text-sm mt-1">info@casarepose.com</p>
                           </div>
                        </div>
                     </div>
@@ -766,7 +834,7 @@ const App = () => {
               <div className="flex items-center gap-3">
               <div className="rounded-lg p-1 bg-gradient-to-tr from-amber-700/10 to-transparent border border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.6)]">
                 <img
-                  src={assetPath('logo/final logo.png')}
+                  src={assetPath('logo/logo.png')}
                   alt="Casa Repose"
                   className="w-10 h-10 object-contain opacity-90 rounded-sm block"
                 />
@@ -854,14 +922,14 @@ const App = () => {
           <p>© 2025 Casa Repose<span className="ml-1 align-super text-xs">®</span> Furniture Pvt Ltd. All rights reserved.</p>     <p>Iso 9001-2015 Certified</p>
           <div className="flex gap-6">
             <button onClick={() => { setActiveSection('privacy'); window.scrollTo(0,0); }} className="hover:text-textMuted transition-colors">Privacy Policy</button>
-            <button className="hover:text-textMuted transition-colors">Terms of Service</button>
+            <button onClick={() => { setActiveSection('terms'); window.scrollTo(0,0); }} className="hover:text-textMuted transition-colors">Terms of Service</button>
           </div>
         </div>
       </footer>
       <FloatingWhatsApp
         phoneNumber="919886877178"
         accountName="Casa Repose"
-        avatar={assetPath('logo/final logo.png')}
+        avatar={assetPath('logo/logo.png')}
         statusMessage="online"
         chatMessage="Hello! Welcome to Casa Repose. How can we help you with your furniture requirements?"
         placeholder="Type a message..."
