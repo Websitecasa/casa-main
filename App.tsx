@@ -315,23 +315,27 @@ const App = () => {
                </div>
             </div>
             
-            {/* Scroll Video Section */}
+            {/* Scroll Video Section - Using casa3.mp4 for iOS compatibility */}
             <div className="w-full bg-black">
-              <div className="relative w-full" style={{ aspectRatio: '16/9', height: 'auto', maxHeight: '100vh' }}>
+              <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
                 <video
-                  src={assetPath('videos/ee.mp4')}
+                  src={assetPath('videos/casa3.mp4')}
                   poster={assetPath('scroll_images/ss.png')}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
+                  className="w-full h-full object-cover block"
+                  autoPlay={true}
+                  muted={true}
+                  loop={true}
+                  playsInline={true}
+                  preload="metadata"
+                  controlsList="nodownload"
                   style={{ 
                     WebkitPlaysinline: 'true',
-                    display: 'block',
-                    maxHeight: '100vh'
+                    width: '100%',
+                    height: '100%',
+                    display: 'block'
                   } as React.CSSProperties}
+                  onLoadStart={() => {}}
+                  onError={(e) => console.log('Video error:', e)}
                 />
               </div>
             </div>
