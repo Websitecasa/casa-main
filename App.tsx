@@ -34,13 +34,23 @@ const App = () => {
   });
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  // Preload first hero image to prevent jitter
+  // Preload first hero slide (image or video) to prevent jitter
   useEffect(() => {
     const firstSlide = HERO_SLIDES[0];
     if (firstSlide.type === 'image') {
       const img = new Image();
       img.src = firstSlide.media;
       img.onload = () => setIsLoaded(true);
+    } else if (firstSlide.type === 'video') {
+      // Preload first video with full data
+      const video = document.createElement('video');
+      video.src = firstSlide.media;
+      video.preload = 'auto';
+      video.muted = true;
+      video.playsInline = true;
+      video.onloadeddata = () => setIsLoaded(true);
+      video.oncanplay = () => setIsLoaded(true);
+      video.onerror = () => setIsLoaded(true); // Continue even if video fails
     } else {
       setIsLoaded(true);
     }
@@ -58,7 +68,7 @@ const App = () => {
     if (activeSection !== 'home') return;
     const interval = setInterval(() => {
       setCurrentHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
+    }, 7000); // Allow full video playback
     return () => clearInterval(interval);
   }, [activeSection]);
 
@@ -66,7 +76,21 @@ const App = () => {
   useEffect(() => {
     const currentSlide = HERO_SLIDES[currentHeroSlide];
     if (currentSlide.type === 'video' && videoRef.current) {
-      videoRef.current.play().catch(e => console.log('Video autoplay prevented:', e));
+      // Reset video to beginning and play
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    }
+    
+    // Preload next video for smooth transition
+    const nextSlideIndex = (currentHeroSlide + 1) % HERO_SLIDES.length;
+    const nextSlide = HERO_SLIDES[nextSlideIndex];
+    if (nextSlide.type === 'video') {
+      const nextVideo = document.createElement('video');
+      nextVideo.src = nextSlide.media;
+      nextVideo.preload = 'auto';
     }
   }, [currentHeroSlide]);
 
@@ -189,7 +213,7 @@ const App = () => {
       </header>
 
       {/* Main Content */}
-      <main className={`relative z-10 min-h-screen flex flex-col ${activeSection === 'home' ? '' : 'pt-32 pb-20 px-6 max-w-7xl mx-auto'}`}>
+      <main className={`relative z-10 flex flex-col ${activeSection === 'home' ? '' : 'min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto'}`}>
         
         {/* HOME SECTION */}
         {activeSection === 'home' && (
@@ -203,7 +227,7 @@ const App = () => {
                    initial={{ opacity: 0 }}
                    animate={{ opacity: 1 }}
                    exit={{ opacity: 0 }}
-                   transition={{ duration: 0.8, ease: "easeInOut" }}
+                   transition={{ duration: 0.5, ease: "easeInOut" }}
                    className="absolute inset-0"
                  >
                    {/* Media (Image or Video) */}
@@ -215,8 +239,11 @@ const App = () => {
                          className="w-full h-full object-cover"
                          autoPlay
                          muted
-                         loop
                          playsInline
+                         controls={false}
+                         preload="auto"
+                         poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%23000' width='1920' height='1080'/%3E%3C/svg%3E"
+                         style={{ WebkitPlaysinline: 'true' }}
                        />
                      ) : (
                        <motion.img 
@@ -226,6 +253,7 @@ const App = () => {
                          initial={{ scale: 1 }}
                          animate={{ scale: 1.05 }}
                          transition={{ duration: 6, ease: "easeOut" }}
+                         loading="eager"
                        />
                      )}
                      {/* Overlay Gradient */}
@@ -238,24 +266,24 @@ const App = () => {
                        initial={{ y: 30, opacity: 0 }}
                        animate={{ y: 0, opacity: 1 }}
                        transition={{ delay: 0.3, duration: 0.8 }}
-                       className="max-w-3xl space-y-6"
+                       className="max-w-3xl space-y-4 sm:space-y-6"
                      >
-                        <h1 className="text-5xl md:text-8xl font-serif text-white tracking-tight">
+                        <h1 className="text-3xl sm:text-5xl md:text-8xl font-serif text-white tracking-tight leading-tight">
                           {HERO_SLIDES[currentHeroSlide].title}
                         </h1>
-                        <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed max-w-2xl">
+                        <p className="text-sm sm:text-lg md:text-2xl text-white/80 font-light leading-relaxed max-w-2xl">
                           {HERO_SLIDES[currentHeroSlide].subtitle}
                         </p>
-                        <div className="pt-8 flex gap-4">
+                        <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
                           <button 
                             onClick={() => setActiveSection('collection')}
-                            className="px-8 py-4 bg-primary text-black font-semibold rounded-full hover:bg-white transition-colors flex items-center gap-2"
+                            className="px-6 sm:px-8 py-3 sm:py-4 bg-primary text-black font-semibold rounded-full hover:bg-white transition-colors flex items-center justify-center sm:justify-start gap-2 active:scale-95 transition-transform"
                           >
-                            Explore Collection <ArrowRight className="w-5 h-5" />
+                            Explore Collection <ArrowRight className="w-5 h-5 hidden sm:inline" />
                           </button>
                           <button 
                             onClick={() => setActiveSection('gallery')}
-                            className="px-8 py-4 bg-transparent border border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors"
+                            className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors active:scale-95 transition-transform"
                           >
                             View Projects
                           </button>
@@ -267,12 +295,12 @@ const App = () => {
                )}
 
                {/* Slider Controls */}
-               <div className="absolute bottom-10 right-10 flex gap-4 z-20">
-                 <button onClick={prevSlide} className="p-4 rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all text-white">
-                   <ChevronLeft className="w-6 h-6" />
+               <div className="absolute bottom-6 sm:bottom-10 right-6 sm:right-10 flex gap-2 sm:gap-4 z-20">
+                 <button onClick={prevSlide} className="p-2.5 sm:p-4 rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all text-white active:scale-95 transition-transform" aria-label="Previous slide">
+                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                  </button>
-                 <button onClick={nextSlide} className="p-4 rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all text-white">
-                   <ChevronRight className="w-6 h-6" />
+                 <button onClick={nextSlide} className="p-2.5 sm:p-4 rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all text-white active:scale-95 transition-transform" aria-label="Next slide">
+                   <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                  </button>
                </div>
                
@@ -927,7 +955,7 @@ const App = () => {
         </div>
       </footer>
       <FloatingWhatsApp
-        phoneNumber="919886877178"
+        phoneNumber="919632406013"
         accountName="Casa Repose"
         avatar={assetPath('logo/logo.png')}
         statusMessage="online"

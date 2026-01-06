@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
       // 👇 THIS IS CRITICAL FOR GITHUB PAGES
-      base: "/casa-main/", 
+      base: "/", 
       
       server: {
         port: 3000,
@@ -21,6 +21,27 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      build: {
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor': ['react', 'react-dom'],
+              'motion': ['framer-motion'],
+              'icons': ['lucide-react']
+            }
+          }
+        },
+        minify: 'terser',
+        terserOptions: {
+          compress: {
+            drop_console: false
+          }
+        },
+        // Optimize chunk size warnings
+        chunkSizeWarningLimit: 1000
+      },
+      // Optimize asset handling
+      assetsInclude: ['**/*.mp4', '**/*.webm', '**/*.png', '**/*.jpg', '**/*.avif']
     };
 });

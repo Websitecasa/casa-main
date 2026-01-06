@@ -2,15 +2,23 @@
 <html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Casa Repose" />
+    <meta name="theme-color" content="#050505" />
     <title>Casa Repose | Premium Furniture</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/casa-main/logo/logo.png" />
+    <link rel="apple-touch-icon" href="/casa-main/logo/logo.png" />
     <meta property="og:image" content="/casa-main/logo/logo.png" />
     <meta name="twitter:image" content="/casa-main/logo/logo.png" />
+    <meta name="description" content="Casa Repose - Premium soft seating furniture for modern workspaces. Explore our collection of chairs, tables, and office solutions." />
+    <!-- Preload first video for instant playback -->
+    <link rel="preload" href="/videos/casa1.mp4" as="video" type="video/mp4" />
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -41,6 +49,7 @@
         background-color: #050505;
         color: #EDEDED;
         -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
       }
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
@@ -55,6 +64,26 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #555;
+      }
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        body {
+          font-size: 16px;
+        }
+        button {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        video {
+          width: 100vw;
+          height: auto;
+          display: block;
+        }
+      }
+      }
+      /* Prevent zoom on input focus on iOS */
+      input, textarea, select {
+        font-size: 16px;
       }
     </style>
   <script type="importmap">

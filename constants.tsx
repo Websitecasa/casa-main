@@ -53,21 +53,21 @@ const HERO_SLIDES_RAW: HeroSlide[] = [
   {
     id: 1,
     type: 'video',
-    media: "/videos/Casa-Repose-Soft-Seating-Profile.mp4",
+    media: "/videos/casa1.mp4",
     title: "Artisan Craftsmanship",
     subtitle: "Watch our premium soft seating collection come to life with precision and passion."
   },
   {
     id: 2,
     type: 'video',
-    media: "/videos/casa3.mp4",
+    media: "/videos/casa2.mp4",
     title: "Precision & Passion",
     subtitle: "Handcrafted details, architecturally inspired for the modern workspace."
   },
   {
     id: 3,
     type: 'video',
-    media: "/videos/casa1.mp4",
+    media: "/videos/casa3.mp4",
     title: "Elevated Comfort",
     subtitle: "Redefining the lounge experience with premium materials and ergonomic design."
   },
