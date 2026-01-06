@@ -315,6 +315,27 @@ const App = () => {
                </div>
             </div>
             
+            {/* Scroll Video Section */}
+            <div className="w-full bg-black">
+              <div className="relative w-full" style={{ aspectRatio: '16/9', height: 'auto', maxHeight: '100vh' }}>
+                <video
+                  src={assetPath('videos/ee.mp4')}
+                  poster={assetPath('scroll_images/ss.png')}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  style={{ 
+                    WebkitPlaysinline: 'true',
+                    display: 'block',
+                    maxHeight: '100vh'
+                  } as React.CSSProperties}
+                />
+              </div>
+            </div>
+            
             {/* Quick About / Values Strip */}
             <div className="bg-[#111] py-20 px-6 border-y border-white/5">
               <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">

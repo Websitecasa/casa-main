@@ -17,91 +17,97 @@
     <meta property="og:image" content="/casa-main/logo/logo.png" />
     <meta name="twitter:image" content="/casa-main/logo/logo.png" />
     <meta name="description" content="Casa Repose - Premium soft seating furniture for modern workspaces. Explore our collection of chairs, tables, and office solutions." />
+    
     <!-- Preload first video for instant playback -->
     <link rel="preload" href="/videos/casa1.mp4" as="video" type="video/mp4" />
+
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
+            fontFamily: { sans: ['Inter', 'sans-serif'] },
             colors: {
               background: '#050505',
               surface: '#121212',
               surfaceHighlight: '#1E1E1E',
               border: '#2A2A2A',
-              primary: '#F59E0B', // Amber for furniture warmth
+              primary: '#F59E0B',
               primaryGlow: '#F59E0B50',
               text: '#EDEDED',
               textMuted: '#A1A1AA',
             },
-            animation: {
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            },
+            animation: { 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' },
           }
         }
       }
     </script>
+
     <style>
       body {
         background-color: #050505;
         color: #EDEDED;
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
+        /* Fix for iOS momentum scrolling */
+        overflow-x: hidden;
+        width: 100%;
       }
       /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #050505;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-      /* Mobile optimizations */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #050505; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+      /* iOS Specific Fixes */
       @media (max-width: 768px) {
-        body {
-          font-size: 16px;
-        }
-        button {
-          min-height: 44px;
-          min-width: 44px;
-        }
+        body { font-size: 16px; }
+        button { min-height: 44px; min-width: 44px; }
+        
         video {
           width: 100vw;
           height: auto;
           display: block;
+          /* CRITICAL FOR iOS: Prevents video from intercepting touch/scroll events */
+          pointer-events: none !important; 
+          /* Prevents iOS from showing play button overlay */
+          -webkit-appearance: none;
         }
       }
-      }
+
       /* Prevent zoom on input focus on iOS */
-      input, textarea, select {
-        font-size: 16px;
-      }
+      input, textarea, select { font-size: 16px; }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+
+    <!-- This script "unlocks" videos for iOS on the first touch -->
+    <script>
+      document.addEventListener('touchstart', function unlock() {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+          video.play().then(() => {
+            video.pause();
+          }).catch(e => console.log("Video priming..."));
+        });
+        document.removeEventListener('touchstart', unlock);
+      }, { once: true });
+    </script>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/index.css">
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
